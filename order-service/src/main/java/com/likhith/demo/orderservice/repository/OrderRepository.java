@@ -10,6 +10,6 @@ import com.likhith.demo.orderservice.document.Order;
 @Repository
 public interface OrderRepository extends MongoRepository<Order, String> {
 
-	List<Order> findByCustomerId(String customerId);
+	List<Order> findByIdIn(List<String> ids);
 
 }

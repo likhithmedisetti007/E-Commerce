@@ -1,6 +1,5 @@
-package com.likhith.demo.customerservice.dto;
+package com.likhith.demo.orderservice.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -9,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({ "product_id", "product_name", "product_cost", "product_category" })
 public class Product {
 
-	@JsonIgnore
 	@JsonProperty("product_id")
 	private String id;
 	@JsonProperty("product_name")

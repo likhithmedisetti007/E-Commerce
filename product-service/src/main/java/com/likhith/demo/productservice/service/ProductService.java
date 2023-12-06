@@ -11,4 +11,8 @@ public interface ProductService {
 
 	public List<Product> getProductDetails(List<String> productIds);
 
+	public List<String> addProductDetails(List<Product> products);
+
+	public String checkProductExists(String name, String cost, String category);
+
 }

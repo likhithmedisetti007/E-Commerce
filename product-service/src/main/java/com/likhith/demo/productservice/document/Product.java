@@ -3,27 +3,31 @@ package com.likhith.demo.productservice.document;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @Document(collection = "product")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({ "product_id", "product_name", "product_cost", "product_category" })
 public class Product {
 
 	@Id
 	@JsonProperty("product_id")
-	private String _id;
+	private String id;
 	@JsonProperty("product_name")
 	private String name;
 	@JsonProperty("product_cost")
 	private String cost;
-	@JsonProperty("product_qty")
-	private String quantity;
+	@JsonProperty("product_category")
+	private String category;
 
-	public String get_id() {
-		return _id;
+	public String getId() {
+		return id;
 	}
 
-	public void set_id(String _id) {
-		this._id = _id;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -42,17 +46,17 @@ public class Product {
 		this.cost = cost;
 	}
 
-	public String getQuantity() {
-		return quantity;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [_id=" + _id + ", name=" + name + ", cost=" + cost + ", quantity=" + quantity + "]";
+		return "Product [id=" + id + ", name=" + name + ", cost=" + cost + ", category=" + category + "]";
 	}
 
 }

@@ -3,20 +3,24 @@ package com.likhith.demo.customerservice.document;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.likhith.demo.customerservice.dto.Order;
 
 @Document(collection = "customer")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "customer_id", "customer_name", "customer_email", "customer_phone", "customer_city",
 		"customer_state", "customer_country" })
 public class Customer {
 
 	@Id
 	@JsonProperty("customer_id")
-	private String _id;
+	private String id;
 	@JsonProperty("customer_name")
 	private String name;
 	@JsonProperty("customer_email")
@@ -29,14 +33,17 @@ public class Customer {
 	private String state;
 	@JsonProperty("customer_country")
 	private String country;
+	@JsonIgnore
+	private List<String> ordersIds;
+	@Transient
 	private List<Order> orders;
 
-	public String get_id() {
-		return _id;
+	public String getId() {
+		return id;
 	}
 
-	public void set_id(String _id) {
-		this._id = _id;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -87,6 +94,14 @@ public class Customer {
 		this.country = country;
 	}
 
+	public List<String> getOrdersIds() {
+		return ordersIds;
+	}
+
+	public void setOrdersIds(List<String> ordersIds) {
+		this.ordersIds = ordersIds;
+	}
+
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -97,8 +112,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [_id=" + _id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", city=" + city
-				+ ", state=" + state + ", country=" + country + ", orders=" + orders + "]";
+		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", city=" + city
+				+ ", state=" + state + ", country=" + country + ", ordersIds=" + ordersIds + ", orders=" + orders + "]";
 	}
 
 }
